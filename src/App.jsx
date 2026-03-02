@@ -12,7 +12,7 @@ function App() {
         </Typography>
 
         <Box sx={{ mt: 3 }}>
-          <GridBoard placement="1,1 NORTH" />
+          <GridBoard placement="2,2 NORTH" />
         </Box>
       </Box>
     </Container>
