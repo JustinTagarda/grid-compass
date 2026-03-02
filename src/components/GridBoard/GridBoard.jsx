@@ -5,10 +5,12 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import NavigationIcon from "@mui/icons-material/Navigation";
+import PropTypes from "prop-types";
 
 import { parsePlacement } from "./placementParser";
 
 const GRID_SIZE = 5;
+const CELL_SIZE = 64;
 
 function rotationForDirection(direction) {
     switch (direction) {
@@ -46,8 +48,8 @@ function GridBoard({ placement }) {
                     key={`cell-${rowIndex}-${colIndex}`}
                     align="center"
                     sx={{
-                        width: 64,
-                        height: 64,
+                        width: CELL_SIZE,
+                        height: CELL_SIZE,
                         padding: 0,
                         border: "1px solid #ccc",
                     }}
@@ -74,11 +76,22 @@ function GridBoard({ placement }) {
                 </Alert>
             ) : null}
 
-            <Table>
-                <TableBody>{rows}</TableBody>
-            </Table>
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+                <Table
+                    sx={{
+                        tableLayout: "fixed",
+                        width: CELL_SIZE * GRID_SIZE,
+                    }}
+                >
+                    <TableBody>{rows}</TableBody>
+                </Table>
+            </Box>
         </Box>
     );
 }
+
+GridBoard.propTypes = {
+    placement: PropTypes.string.isRequired,
+};
 
 export default GridBoard;
