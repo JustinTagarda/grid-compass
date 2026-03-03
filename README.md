@@ -1,16 +1,91 @@
-# React + Vite
+# Grid Compass
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A small React component that renders a 5×5 grid and places a directional marker based on a placement string.
 
-Currently, two official plugins are available:
+This project focuses on input parsing, validation, and predictable UI rendering. It includes unit tests and Storybook stories for the main scenarios.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Setup
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Install dependencies:
 
-## Expanding the ESLint configuration
+```
+npm install
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Start the development server:
+
+```
+npm run dev
+```
+
+Run Storybook:
+
+```
+npm run storybook
+```
+
+Build for production:
+
+```
+npm run build
+```
+
+Preview production build:
+
+```
+npm run preview
+```
+
+---
+
+## Input Format
+
+The component accepts a `placement` string in the following format:
+
+```
+x,y DIRECTION
+```
+
+Example:
+
+```
+2,2 NORTH
+```
+
+Rules:
+
+* `x` and `y` must be between 0 and 4
+* Direction must be one of: `NORTH`, `EAST`, `SOUTH`, `WEST`
+* Direction is case-insensitive
+* Invalid input renders an error message
+
+---
+
+## Tests
+
+Run tests in watch mode:
+
+```
+npm run test
+```
+
+Run once:
+
+```
+npm run test:run
+```
+
+Tests cover:
+
+* Placement parsing and validation
+* Component rendering behavior (error and marker)
+
+---
+
+## Notes
+
+* Grid size is fixed at 5×5.
+* Coordinates are validated strictly within bounds.
+* Parsing logic is separated from rendering for easier testing.
